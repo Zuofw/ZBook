@@ -1,0 +1,134 @@
+version: '3.8'
+
+services:
+  mysql-master:
+    image: mysql:latest
+    container_name: mysql-master
+    environment:
+      MYSQL_ROOT_PASSWORD: "bronya"
+      MASTER_SYNC_USER: "sync_admin"
+      MASTER_SYNC_PASSWORD: "bronya"
+      ADMIN_USER: "root"
+      ADMIN_PASSWORD: "bronya"
+      ALLOW_HOST: "10.10.%.%"
+      TZ: "Asia/Shanghai"
+    networks:
+      mysql:
+        ipv4_address: 10.10.10.10
+    volumes:
+      - ./init/master:/docker-entrypoint-initdb.d
+    command:
+      - "--server-id=1"
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
+      - "--log-bin=mysql-bin"
+      - "--sync_binlog=1"
+    ports:
+      - "3306:3306"
+
+  mysql-slave1:
+    image: mysql:latest
+    container_name: mysql-slave1
+    environment:
+      MYSQL_ROOT_PASSWORD: "bronya"
+      SLAVE_SYNC_USER: "sync_admin"
+      SLAVE_SYNC_PASSWORD: "bronya"
+      ADMIN_USER: "root"
+      ADMIN_PASSWORD: "bronya"
+      MASTER_HOST: "10.10.10.10"
+      TZ: "Asia/Shanghai"
+    networks:
+      - mysql
+    volumes:
+      - ./init/slave:/docker-entrypoint-initdb.d
+    command:
+      - "--server-id=2"
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
+    ports:
+      - "3307:3306"
+
+  mysql-slave2:
+    image: mysql:latest
+    container_name: mysql-slave2
+    environment:
+      MYSQL_ROOT_PASSWORD: "bronya"
+      SLAVE_SYNC_USER: "sync_admin"
+      SLAVE_SYNC_PASSWORD: "bronya"
+      ADMIN_USER: "root"
+      ADMIN_PASSWORD: "bronya"
+      MASTER_HOST: "10.10.10.10"
+      TZ: "Asia/Shanghai"
+    networks:
+      - mysql
+    volumes:
+      - ./init/slave:/docker-entrypoint-initdb.d
+    command:
+      - "--server-id=3"
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
+    ports:
+      - "3308:3306"
+  # Redis Master
+  redis-master:
+    image: redis:latest
+    container_name: redis-master
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+
+  # Redis Slave
+  redis-slave:
+    image: redis:latest
+    container_name: redis-slave
+    depends_on:
+      - redis-master
+    ports:
+      - "6380:6379"
+    command: ["redis-server", "--appendonly", "yes", "--slaveof", "redis-master", "6379"]
+
+  # Redis Sentinel
+  redis-sentinel:
+    image: redis:latest
+    container_name: redis-sentinel
+    depends_on:
+      - redis-master
+      - redis-slave
+    ports:
+      - "26379:26379"
+    command:
+      - "redis-sentinel"
+      - "/etc/redis/sentinel.conf"
+    volumes:
+      - ./redis/sentinel.conf:/etc/redis/sentinel.conf
+
+  # Nacos
+  nacos:
+    image: nacos/nacos-server:latest
+    container_name: nacos
+    environment:
+      MODE: standalone
+      PREFER_HOST_MODE: hostname
+      JVM_XMS: 512m
+      JVM_XMX: 512m
+      JVM_XMN: 256m
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+      - "9849:9849"
+
+  # MongoDB
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongodb/data:/data/db
+
+networks:
+  mysql:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.10.0/24
