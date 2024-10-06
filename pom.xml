@@ -9,11 +9,10 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>zuofw-gateway</module>
-        <module>zuofw-commons</module>
-        <module>zuofw-web</module>
         <module>zuofw-user</module>
-    </modules>
+        <module>zuofw-framework</module>
+        <module>zuofw-gateway</module>
+  </modules>
 
     <properties>
         <!-- 项目版本号 -->
@@ -32,9 +31,20 @@
         <spring-cloud.version>2022.0.0</spring-cloud.version>
         <!-- 依赖包版本 -->
         <lombok.version>1.18.30</lombok.version>
+        <mysql-connector-java.version>8.0.29</mysql-connector-java.version>
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.33</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-3-starter</artifactId>
+                <version>1.2.23</version>
+            </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
@@ -57,7 +67,17 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>3.5.5</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.mybatis</groupId>
+                        <artifactId>mybatis-spring</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
             <!-- Spring Cloud 官方依赖管理 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -65,6 +85,19 @@
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <!-- Mybatis -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+
+            <!-- MySQL 驱动 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
             </dependency>
         </dependencies>
 

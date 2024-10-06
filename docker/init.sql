@@ -1,5 +1,5 @@
 # 如果存在就
-use zfw_book;
+use zbook;
 create table user(
                      id int auto_increment primary key,
                      user_name varchar(255),

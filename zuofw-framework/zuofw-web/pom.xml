@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.zuofw</groupId>
-        <artifactId>zuofw-cloud</artifactId>
+        <artifactId>zuofw-framework</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>zuofw-commons</artifactId>
+    <artifactId>zuofw-web</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
