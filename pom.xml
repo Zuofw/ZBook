@@ -12,6 +12,7 @@
         <module>zuofw-user</module>
         <module>zuofw-framework</module>
         <module>zuofw-auth</module>
+        <module>zuofw-gateway</module>
   </modules>
 
     <properties>
