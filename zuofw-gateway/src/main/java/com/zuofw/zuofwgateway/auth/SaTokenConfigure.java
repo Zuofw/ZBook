@@ -9,7 +9,7 @@
 //import org.springframework.context.annotation.Configuration;
 //
 ///**
-// * @author: 犬小哈
+// * @author: zuofw
 // * @date: 2024/6/13 14:48
 // * @version: v1.0.0
 // * @description: [Sa-Token 权限认证] 配置类

@@ -17,7 +17,7 @@ import java.security.NoSuchAlgorithmException;
 public interface FileStrategy{
     /*
      * @description:  上传文件
-     * @author bronya
+     * @author zuofw
      * @date: 2024/10/9 10:03
      * @param file
      * @param bucketName

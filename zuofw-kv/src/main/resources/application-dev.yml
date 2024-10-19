@@ -1,0 +1,7 @@
+spring:
+  cassandra:
+    keyspace-name: zuofw
+    contact-points: 192.168.61.190
+    port: 9042
+    username: bronya
+    password: bronya
