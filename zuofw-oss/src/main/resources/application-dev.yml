@@ -1,0 +1,4 @@
+minio:
+  endpoint: http://192.168.61.190:9000
+  accessKey: BRONYABRONYA
+  secretKey: BRONYABRONYA123

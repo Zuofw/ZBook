@@ -13,9 +13,12 @@
         <module>zuofw-framework</module>
         <module>zuofw-auth</module>
         <module>zuofw-gateway</module>
-  </modules>
+        <module>zuofw-oss</module>
+    </modules>
+
 
     <properties>
+        <minio.version>8.2.1</minio.version>
         <!-- 项目版本号 -->
         <revision>0.0.1-SNAPSHOT</revision>
         <!-- JDK 版本 -->
@@ -33,9 +36,15 @@
         <!-- 依赖包版本 -->
         <lombok.version>1.18.30</lombok.version>
         <mysql-connector-java.version>8.0.29</mysql-connector-java.version>
+        <sa-token.version>1.38.0</sa-token.version>
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio.version}</version>
+            </dependency>
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
@@ -87,13 +96,28 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-redis-jackson</artifactId>
+                <version>1.39.0</version>
+            </dependency>
             <!-- Mybatis -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${spring-boot.version}</version>
             </dependency>
-
+<!--       sa-token     -->
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-spring-boot3-starter</artifactId>
+                <version>1.39.0</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-reactor-spring-boot3-starter</artifactId>
+                <version>1.39.0</version>
+            </dependency>
             <!-- MySQL 驱动 -->
             <dependency>
                 <groupId>mysql</groupId>

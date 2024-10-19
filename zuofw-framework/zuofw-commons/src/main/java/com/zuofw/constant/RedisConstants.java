@@ -6,7 +6,10 @@ public interface RedisConstants {
      */
     String USER_LOGIN_KEY = "user:login:";
 
-    String ACCESS_TOKEN_KEY = "zianwork:access_token";
+    /*
+     * 用户权限前缀
+     */
+    String USER_PERMISSION_KEY = "user:permission:";
 
-    String HNUST_APP_TOKEN = "zianwork:app_token:";
+
 }
