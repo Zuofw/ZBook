@@ -18,6 +18,10 @@
     </properties>
 <dependencies>
     <dependency>
+        <groupId>io.github.openfeign</groupId>
+        <artifactId>feign-core</artifactId>
+    </dependency>
+    <dependency>
         <groupId>com.zuofw</groupId>
         <artifactId>zuofw-commons</artifactId>
         <version>1.0-SNAPSHOT</version>
