@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class AddNoteContentReqDTO {
 
     @NotNull(message = "笔记 ID 不能为空")
-    private Long noteId;
+    private String noteId;
 
     @NotBlank(message = "笔记内容不能为空")
     private String content;

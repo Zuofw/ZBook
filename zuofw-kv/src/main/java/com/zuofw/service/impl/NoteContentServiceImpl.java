@@ -33,7 +33,7 @@ public class NoteContentServiceImpl implements NoteContentService {
     @Override
     public Result<?> addNoteContent(AddNoteContentReqDTO addNoteContentReqDTO) {
         // 笔记 ID
-        Long noteId = addNoteContentReqDTO.getNoteId();
+        String noteId = addNoteContentReqDTO.getNoteId();
         // 笔记内容
         String content = addNoteContentReqDTO.getContent();
 
@@ -51,7 +51,6 @@ public class NoteContentServiceImpl implements NoteContentService {
     /**
      * 查询笔记内容
      *
-     * @param findNoteContentReqDTO
      * @return
      */
     @Override

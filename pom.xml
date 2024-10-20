@@ -16,6 +16,7 @@
         <module>zuofw-oss</module>
         <module>zuofw-kv</module>
         <module>zuofw-distributed-id-generator</module>
+        <module>zuofw-note</module>
     </modules>
 
 

@@ -4,12 +4,14 @@ package com.zuofw.domain.vo;
 import com.zuofw.enums.ErrorCodeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 返回格式统一封装
  */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Result<T> {
 
     /**
