@@ -5,6 +5,7 @@ import com.zuofw.domain.entity.NoteContentDO;
 import com.zuofw.domain.repository.NoteContentRepository;
 import com.zuofw.domain.vo.Result;
 import com.zuofw.dto.AddNoteContentReqDTO;
+import com.zuofw.dto.FindNoteContentRspDTO;
 import com.zuofw.service.NoteContentService;
 import com.zuofw.util.ResultUtils;
 import jakarta.annotation.Resource;
@@ -12,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.client.loadbalancer.Response;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -46,4 +48,37 @@ public class NoteContentServiceImpl implements NoteContentService {
 
         return ResultUtils.success("ok");
     }
+    /**
+     * 查询笔记内容
+     *
+     * @param findNoteContentReqDTO
+     * @return
+     */
+    @Override
+    public Result<FindNoteContentRspDTO> findNoteContent(String noteId) {
+        // 根据笔记 ID 查询笔记内容
+        Optional<NoteContentDO> optional = noteContentRepository.findById(UUID.fromString(noteId));
+
+        // 若笔记内容不存在
+        if (!optional.isPresent()) {
+            throw new RuntimeException("笔记内容不存在");
+        }
+
+        NoteContentDO noteContentDO = optional.get();
+        // 构建返参 DTO
+        FindNoteContentRspDTO findNoteContentRspDTO = FindNoteContentRspDTO.builder()
+                .noteId(noteContentDO.getId())
+                .content(noteContentDO.getContent())
+                .build();
+
+        return ResultUtils.success(findNoteContentRspDTO);
+    }
+
+    @Override
+    public Result<?> deleteNoteContent(String noteId) {
+        // 根据笔记 ID 删除笔记内容
+        noteContentRepository.deleteById(UUID.fromString(noteId));
+        return ResultUtils.success("ok");
+    }
 }
+
