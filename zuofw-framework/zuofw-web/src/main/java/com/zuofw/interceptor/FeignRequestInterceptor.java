@@ -1,9 +1,13 @@
 package com.zuofw.interceptor;
 
 
+import com.zuofw.enums.GlobalConstants;
+import com.zuofw.holder.LoginUserContextHolder;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.Objects;
 
 /**
  * 〈〉
@@ -17,11 +21,14 @@ public class FeignRequestInterceptor implements RequestInterceptor {
 
     @Override
     public void apply(RequestTemplate requestTemplate) {
-        // 逻辑就是拦截Authorization，获取usrId，然后设置到header中,这里懒得写了
-//        RequestTemplate authorization = requestTemplate.header("Authorization");
-//        if(Objects.nonNull(authorization)) {
-//            requestTemplate.header("Authorization", String.valueOf(authorization));
-//            log.info("FeignRequestInterceptor userId:{}", userId);
-//        }
+        // 获取当前上下文中的用户 ID
+        Long userId = LoginUserContextHolder.getUserId();
+
+        // 若不为空，则添加到请求头中
+        if (Objects.nonNull(userId)) {
+            requestTemplate.header(GlobalConstants.USER_ID, String.valueOf(userId));
+            log.info("########## feign 请求设置请求头 userId: {}", userId);
+        }
+    }
     }
 }

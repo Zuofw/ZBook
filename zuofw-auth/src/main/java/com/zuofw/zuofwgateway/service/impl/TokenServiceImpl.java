@@ -38,6 +38,8 @@ public class TokenServiceImpl implements TokenService {
     public String createToken(LoginUser loginUser) {
         String uuid = UUID.randomUUID().toString().replace("-", "");
         loginUser.setUUID(uuid);
+        redisCache.setExpireCache(RedisConstants.ZBOOK_KEY+ uuid, loginUser.getUserId(), EXPIRE_TIME, TimeUnit.MINUTES);
+
         redisCache.setExpireCache(RedisConstants.USER_LOGIN_KEY + uuid, loginUser, EXPIRE_TIME, TimeUnit.MINUTES);
         HashMap<String,Object> playLoad = new HashMap<>() {
             {

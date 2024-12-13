@@ -11,5 +11,10 @@ public interface RedisConstants {
      */
     String USER_PERMISSION_KEY = "user:permission:";
 
+    /*
+     * zbook
+     */
+    String ZBOOK_KEY = "zbook:";
+
 
 }
