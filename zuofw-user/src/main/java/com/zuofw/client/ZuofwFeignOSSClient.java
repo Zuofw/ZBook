@@ -3,6 +3,7 @@ package com.zuofw.client;
 import com.zuofw.feign.ZuofwOSSClient;
 import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 
 /**
  * 〈〉
