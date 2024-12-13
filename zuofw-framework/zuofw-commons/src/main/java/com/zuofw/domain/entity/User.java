@@ -26,6 +26,7 @@ import java.io.Serializable;
 @Builder
 public class User implements Serializable {
 
+    // todo 修改成全局的id
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 

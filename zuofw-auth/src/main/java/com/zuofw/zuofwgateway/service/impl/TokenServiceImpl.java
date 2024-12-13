@@ -4,7 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTUtil;
 import com.zuofw.constant.RedisConstants;
-import com.zuofw.util.RedisCache;
+import com.zuofw.util.RedisUtils;
 import com.zuofw.zuofwgateway.domain.LoginUser;
 import com.zuofw.zuofwgateway.service.TokenService;
 import jakarta.annotation.Resource;
@@ -33,7 +33,7 @@ public class TokenServiceImpl implements TokenService {
     //过期时间
     private final static int EXPIRE_TIME = 30;// 30分钟
     @Resource
-    private RedisCache redisCache;
+    private RedisUtils redisCache;
     @Override
     public String createToken(LoginUser loginUser) {
         String uuid = UUID.randomUUID().toString().replace("-", "");

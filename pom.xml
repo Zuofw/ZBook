@@ -21,6 +21,7 @@
 
 
     <properties>
+        <caffeine.version>3.1.8</caffeine.version>
         <minio.version>8.2.1</minio.version>
         <!-- 项目版本号 -->
         <revision>0.0.1-SNAPSHOT</revision>
@@ -43,6 +44,11 @@
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.github.ben-manes.caffeine</groupId>
+                <artifactId>caffeine</artifactId>
+                <version>${caffeine.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-openfeign</artifactId>
@@ -69,6 +75,11 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-3-starter</artifactId>
                 <version>1.2.23</version>
+            </dependency>
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>3.36.0</version>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>

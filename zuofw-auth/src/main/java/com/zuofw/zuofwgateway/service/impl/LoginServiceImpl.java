@@ -14,10 +14,12 @@ import com.zuofw.zuofwgateway.utils.SecurityUtils;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.support.TransactionTemplate;
 
 
 /**
@@ -37,7 +39,15 @@ public class LoginServiceImpl implements LoginService {
     private AuthenticationManager authenticationManager;
     @Resource
     private TokenService tokenService;
+
+    @Resource
+    private RedisTemplate redisTemplate;
+
+    @Resource
+    private TransactionTemplate transactionTemplate;
     private final static int EXPIRE_TIME = 30;
+
+
 
     @Override
     public String adminLogin(String adminAccount, String adminPassword) {
@@ -55,16 +65,35 @@ public class LoginServiceImpl implements LoginService {
         return tokenService.createToken(loginUser);
     }
 
+    /*
+     * @description: 管理员注册
+     * @author bronya
+     * @date: 2024/12/13 12:55
+     * @param adminRegisterRequest
+     */
     @Override
     public void adminRegister(AdminRegisterRequest adminRegisterRequest) {
-        if(adminService.getOne(new QueryWrapper<User>().eq("user_name", adminRegisterRequest.getAdminAccount())) != null) {
-            throw new BusinessException(ErrorCodeEnum.UNAUTHORIZED, "账号已存在");
-        }
-        User admin = User.builder().userName(adminRegisterRequest.getAdminAccount())
-                .password(adminRegisterRequest.getAdminPassword()).build();
-        admin.setPassword(SecurityUtils.encodePassword(adminRegisterRequest.getAdminPassword()));
+
+        transactionTemplate.execute(status -> {
+            try {
+                if (adminService.getOne(new QueryWrapper<User>().eq("user_name", adminRegisterRequest.getAdminAccount())) != null) {
+                    throw new BusinessException(ErrorCodeEnum.UNAUTHORIZED, "账号已存在");
+                }
+                // todo 修改成全局的id
+//        Long zuofwiId = SecurityUtils.generateId();
+                User admin = User.builder().userName(adminRegisterRequest.getAdminAccount())
+                        .password(adminRegisterRequest.getAdminPassword()).build();
+                admin.setPassword(SecurityUtils.encodePassword(adminRegisterRequest.getAdminPassword()));
 //        log.info("admin: {}", admin);
-        adminService.save(admin);
+                adminService.save(admin);
+            } catch (Exception e) {
+                status.setRollbackOnly();
+                log.error("注册失败", e);
+                throw new BusinessException(ErrorCodeEnum.UNAUTHORIZED, "注册失败");
+            }
+            return null;
+        });
+
     }
 
     @Override
