@@ -3,6 +3,7 @@ package com.zuofw.service;
 
 import com.zuofw.domain.vo.PublishNoteReqVO;
 import com.zuofw.domain.vo.Result;
+import com.zuofw.domain.vo.UpdateNoteReqVO;
 import org.springframework.cloud.client.loadbalancer.Response;
 
 /**
@@ -20,4 +21,5 @@ public interface NoteService {
      */
     Result<?> publishNote(PublishNoteReqVO publishNoteReqVO);
 
+    Result<?> updateNote(UpdateNoteReqVO updateNoteReqVO);
 }

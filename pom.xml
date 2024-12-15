@@ -17,6 +17,10 @@
         <module>zuofw-kv</module>
         <module>zuofw-distributed-id-generator</module>
         <module>zuofw-note</module>
+        <module>zuofw-canal</module>
+        <module>zuofw-es</module>
+        <module>zuofw-job</module>
+        <module>zuofw-im</module>
     </modules>
 
 
@@ -41,9 +45,15 @@
         <lombok.version>1.18.30</lombok.version>
         <mysql-connector-java.version>8.0.29</mysql-connector-java.version>
         <sa-token.version>1.38.0</sa-token.version>
+        <rocketmq.version>2.2.3</rocketmq.version>
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.github.ben-manes.caffeine</groupId>
                 <artifactId>caffeine</artifactId>
