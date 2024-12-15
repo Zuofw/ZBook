@@ -38,7 +38,7 @@ spring:
             multi-statement-allow: true
   data:
     redis:
-      database: 0 # Redis 数据库索引（默认为 0）
+      database: 2 # Redis 数据库索引（默认为 0）
       host: 192.168.61.190 # Redis 服务器地址
       port: 6379 # Redis 服务器连接端口
       password: bronya # Redis 服务器连接密码（默认为空）

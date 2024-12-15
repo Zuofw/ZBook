@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTUtil;
 import com.zuofw.constant.RedisConstants;
+import com.zuofw.holder.LoginUserContextHolder;
 import com.zuofw.util.RedisUtils;
 import com.zuofw.zuofwgateway.domain.LoginUser;
 import com.zuofw.zuofwgateway.service.TokenService;
@@ -43,6 +44,7 @@ public class TokenServiceImpl implements TokenService {
                 put(LOGIN_USER_KEY, uuid);
             }
         };
+        LoginUserContextHolder.setUserId(loginUser.getUserId());
         return JWTUtil.createToken(playLoad, secret.getBytes());
     }
 
@@ -54,7 +56,8 @@ public class TokenServiceImpl implements TokenService {
             return null;
         }
         String uuid = getLoginKey(token);
-        return redisCache.getCache(RedisConstants.USER_LOGIN_KEY + uuid);
+        LoginUser cache = redisCache.getCache(RedisConstants.USER_LOGIN_KEY + uuid);
+        return cache;
     }
     @Override
     public void refreshToken(LoginUser loginUser) {
@@ -64,6 +67,7 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public void removeToken(String token) {
+        LoginUserContextHolder.remove();
         String uuid = getLoginKey(token);
         redisCache.deleteCache(RedisConstants.USER_LOGIN_KEY + uuid);
     }
