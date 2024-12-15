@@ -35,7 +35,7 @@ public class FastJson2JsonRedisSerializer<T> implements RedisSerializer<T> {
             return null;
         }
         String str = new String(bytes, StandardCharsets.UTF_8);
-        String[] packageNames = {"org.springframework", "com.ticknet"};
+        String[] packageNames = {"org.springframework", "com.zuofw"};
         return JSON.parseObject(str, clazz, JSONReader.autoTypeFilter(packageNames));
     }
 }

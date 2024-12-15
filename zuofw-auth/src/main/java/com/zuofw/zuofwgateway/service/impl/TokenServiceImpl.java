@@ -34,36 +34,32 @@ public class TokenServiceImpl implements TokenService {
     private final static int EXPIRE_TIME = 30;// 30分钟
     @Resource
     private RedisUtils redisCache;
-    @Override
     public String createToken(LoginUser loginUser) {
-        String uuid = UUID.randomUUID().toString().replace("-", "");
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         loginUser.setUUID(uuid);
-        redisCache.setExpireCache(RedisConstants.ZBOOK_KEY+ uuid, loginUser.getUserId(), EXPIRE_TIME, TimeUnit.MINUTES);
-
         redisCache.setExpireCache(RedisConstants.USER_LOGIN_KEY + uuid, loginUser, EXPIRE_TIME, TimeUnit.MINUTES);
-        HashMap<String,Object> playLoad = new HashMap<>() {
+        HashMap<String, Object> playLoad = new HashMap<String, Object>() {
             {
-                put(LOGIN_USER_KEY,uuid);
+                put(LOGIN_USER_KEY, uuid);
             }
         };
-        return JWTUtil.createToken(playLoad,secret.getBytes());
+        return JWTUtil.createToken(playLoad, secret.getBytes());
     }
+
 
     @Override
     public LoginUser getLoginUser(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
-        log.info("token:{}",token);
-        if(StrUtil.isEmpty(token) || StrUtil.isBlank(token)){
+        if (StrUtil.isEmpty(token) || StrUtil.isBlank(token)) {
             return null;
         }
         String uuid = getLoginKey(token);
-        return redisCache.getCache(RedisConstants.USER_LOGIN_KEY +uuid);
+        return redisCache.getCache(RedisConstants.USER_LOGIN_KEY + uuid);
     }
-
     @Override
     public void refreshToken(LoginUser loginUser) {
         String uuid = loginUser.getUUID();
-        redisCache.setExpireCache(RedisConstants.USER_LOGIN_KEY + uuid,loginUser,EXPIRE_TIME,TimeUnit.MINUTES);
+        redisCache.setExpireCache(RedisConstants.USER_LOGIN_KEY + uuid, loginUser, EXPIRE_TIME, TimeUnit.MINUTES);
     }
 
     @Override

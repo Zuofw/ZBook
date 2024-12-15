@@ -43,22 +43,24 @@ public class RedisUtils {
 //    private static final ExecutorService CACHE_REBUILD_EXECUTOR = Executors.newFixedThreadPool(10);
 
 
+
     public <T> void setCache(String key, T value) {
-        redisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(value));
+        redisTemplate.opsForValue().set(key, value);
     }
-    public <T> void setExpireCache (String key, T value, int timeout, TimeUnit timeUnit) {
-        redisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(value), timeout, timeUnit);
+
+    public <T> void setExpireCache(String key, T value, int timeout, TimeUnit timeUnit) {
+        redisTemplate.opsForValue().set(key, value, timeout, timeUnit);
     }
+
     @SuppressWarnings("unchecked")
     public <T> T getCache(String key) {
         Object value = redisTemplate.opsForValue().get(key);
+        // 防止NPE
         return Objects.isNull(value) ? null : (T) value;
     }
-    public <T>  void deleteCache(String key) {
+    public <T> void deleteCache(String key){
         redisTemplate.delete(key);
     }
-    // 下面封装分布式锁，两种一种使用Redission，另一种手写的
-
     private Boolean tryLock(String key, long timeoutSec) {
         // 获取当前线程标识
         String threadId = ID_PREFIX + Thread.currentThread().getId();

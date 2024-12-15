@@ -2,6 +2,7 @@ package com.zuofw.holder;
 
 
 
+import com.alibaba.ttl.TransmittableThreadLocal;
 import com.zuofw.enums.GlobalConstants;
 
 import java.util.HashMap;
