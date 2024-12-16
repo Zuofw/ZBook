@@ -30,8 +30,8 @@ public class NoteController {
     public Result<?> publishNote(@Validated @RequestBody PublishNoteReqVO publishNoteReqVO) {
         return noteService.publishNote(publishNoteReqVO);
     }
-    @GetMapping(value = "/list")
-    public Result<?> listNote() {
-        return noteService.listNote();
-    }
+//    @GetMapping(value = "/list")
+//    public Result<?> listNote() {
+//        return noteService.listNote();
+//    }
 }

@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: zuofw-canal
+  profiles:
+    active: dev
+server:
+  port: 8089
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml

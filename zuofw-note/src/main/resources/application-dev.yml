@@ -54,7 +54,7 @@ logging:
   level:
     com.zuofw.mapper: debug
 rocketmq:
-  name-server: 122.51.53.24:9876 # name server 地址
+  name-server: 192.168.61.190:9876 # name server 地址
   producer:
     group: zuofw_group
     send-message-timeout: 3000 # 消息发送超时时间，默认 3s

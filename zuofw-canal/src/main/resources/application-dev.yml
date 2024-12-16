@@ -1,0 +1,18 @@
+canal: # Canal 配置
+  address: 192.168.61.190 # 链接地址
+  destination: example # 数据目标
+  username: canal # 数据库用户名
+  password: canal # 数据库密码
+  subscribe: zbook.t_note,zbook.t_user # 订阅规则，只订阅笔记表和用户表
+  batchSize: 1000 # 一批次拉取数据量
+rocketmq:
+  name-server: 192.168.61.190:9876 # name server 地址
+  producer:
+    group: zuofw_group
+    send-message-timeout: 3000 # 消息发送超时时间，默认 3s
+    retry-times-when-send-failed: 3 # 同步发送消息失败后，重试的次数
+    retry-times-when-send-async-failed: 3 # 异步发送消息失败后，重试的次数
+    max-message-size: 4096 # 消息最大大小（单位：字节）
+  consumer:
+    group: zuofw
+    pull-batch-size: 5 # 每次拉取的最大消息数

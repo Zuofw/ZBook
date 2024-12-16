@@ -71,7 +71,7 @@ public class NoteServiceImpl implements NoteService {
         }
 
         String imgUris = null;
-		// 笔记内容是否为空，默认值为 true，即空
+        // 笔记内容是否为空，默认值为 true，即空
         Boolean isContentEmpty = true;
         String videoUri = null;
         switch (noteTypeEnum) {
@@ -93,7 +93,7 @@ public class NoteServiceImpl implements NoteService {
             default:
                 break;
         }
-        
+
         // RPC: 调用分布式 ID 生成服务，生成笔记 ID
         String snowflakeIdId = distributedIdGeneratorRpcService.getSnowflakeId();
         // 笔记内容 UUID
@@ -153,7 +153,7 @@ public class NoteServiceImpl implements NoteService {
             noteDOMapper.insert(noteDO);
         } catch (Exception e) {
             log.error("==> 笔记存储失败", e);
-            
+
             // RPC: 笔记保存失败，则删除笔记内容
             if (!contentUuid.isBlank()) {
                 keyValueRpcService.deleteNoteContent(contentUuid);
@@ -175,7 +175,7 @@ public class NoteServiceImpl implements NoteService {
 
         // 若非图文、视频，抛出业务业务异常
         if (Objects.isNull(noteTypeEnum)) {
-            throw new BizException(ResponseCodeEnum.NOTE_TYPE_ERROR);
+            throw new RuntimeException("笔记类型不存在");
         }
 
         String imgUris = null;
@@ -206,12 +206,12 @@ public class NoteServiceImpl implements NoteService {
 
         // 笔记不存在
         if (Objects.isNull(selectNoteDO)) {
-            throw new BizException(ResponseCodeEnum.NOTE_NOT_FOUND);
+            throw new RuntimeException("笔记不存在");
         }
 
         // 判断权限：非笔记发布者不允许更新笔记
         if (!Objects.equals(currUserId, selectNoteDO.getCreatorId())) {
-            throw new BizException(ResponseCodeEnum.NOTE_CANT_OPERATE);
+            throw new RuntimeException("无权限更新笔记");
         }
 
         // 话题
@@ -221,7 +221,7 @@ public class NoteServiceImpl implements NoteService {
             topicName = topicDOMapper.selectNameByPrimaryKey(topicId);
 
             // 判断一下提交的话题, 是否是真实存在的
-            if (StringUtils.isBlank(topicName)) throw new BizException(ResponseCodeEnum.TOPIC_NOT_FOUND);
+            if (StringUtils.isBlank(topicName)) throw new RuntimeException("话题不存在");
         }
 
 
@@ -241,9 +241,9 @@ public class NoteServiceImpl implements NoteService {
 
         noteDOMapper.updateByPrimaryKey(noteDO);
 
-        // 删除 Redis 缓存
-        String noteDetailRedisKey = RedisKeyConstants.buildNoteDetailKey(noteId);
-        redisTemplate.delete(noteDetailRedisKey);
+//        // 删除 Redis 缓存
+//        String noteDetailRedisKey = RedisKeyConstants.buildNoteDetailKey(noteId);
+//        redisTemplate.delete(noteDetailRedisKey);
 
         // // 删除本地缓存
         // LOCAL_CACHE.invalidate(noteId);
@@ -268,11 +268,10 @@ public class NoteServiceImpl implements NoteService {
 
         // 如果更新失败，抛出业务异常，回滚事务
         if (!isUpdateContentSuccess) {
-            throw new BizException(ResponseCodeEnum.NOTE_UPDATE_FAIL);
+            throw new RuntimeException("笔记内容更新失败");
         }
-
+        return null;
     }
-
-
 }
+
 
