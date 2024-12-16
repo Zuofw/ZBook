@@ -67,7 +67,7 @@ public class LoginServiceImpl implements LoginService {
 
     /*
      * @description: 管理员注册
-     * @author bronya
+     * @author zuofw
      * @date: 2024/12/13 12:55
      * @param adminRegisterRequest
      */

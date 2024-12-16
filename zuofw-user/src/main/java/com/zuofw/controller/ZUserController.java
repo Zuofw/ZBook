@@ -29,7 +29,7 @@ public class ZUserController {
 
     /*
      * @description:  更新用户信息 consumes是指定请求的Content-Type类型，如果不指定，那么默认是application/json
-     * @author bronya
+     * @author zuofw
      * @date: 2024/12/13 14:43
      * @param id
      */
