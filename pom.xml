@@ -21,6 +21,7 @@
         <module>zuofw-es</module>
         <module>zuofw-job</module>
         <module>zuofw-im</module>
+        <module>xxl-job</module>
     </modules>
 
 
