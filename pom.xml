@@ -47,9 +47,15 @@
         <mysql-connector-java.version>8.0.29</mysql-connector-java.version>
         <sa-token.version>1.38.0</sa-token.version>
         <rocketmq.version>2.2.3</rocketmq.version>
+        <xxl-job.version>2.4.2</xxl-job.version>
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.xuxueli</groupId>
+                <artifactId>xxl-job-core</artifactId>
+                <version>${xxl-job.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-spring-boot-starter</artifactId>

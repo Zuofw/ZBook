@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zuofw.mapper.CreateTableMapper">
+
+    <insert id="createDataAlignFollowingCountTempTable" parameterType="map">
+        CREATE TABLE IF NOT EXISTS `t_data_align_following_count_temp_${tableNameSuffix}` (
+                                                                                              `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+                                                                                              `user_id` bigint unsigned NOT NULL COMMENT '用户ID',
+                                                                                              PRIMARY KEY (`id`) USING BTREE,
+                                                                                              UNIQUE KEY `uk_user_id` (`user_id`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='数据对齐日增量表：关注数';
+    </insert>
+</mapper>
