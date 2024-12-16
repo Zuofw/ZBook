@@ -41,4 +41,9 @@ public class SearchUserRspVO {
      */
     private Integer fansTotal;
 
+    /**
+     * 昵称：关键词高亮
+     */
+    private String highlightNickname;
+
 }

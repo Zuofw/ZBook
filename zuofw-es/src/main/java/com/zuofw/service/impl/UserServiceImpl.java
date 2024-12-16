@@ -1,6 +1,7 @@
 package com.zuofw.service.impl;
 
 
+import cn.hutool.core.collection.CollUtil;
 import com.alibaba.nacos.shaded.com.google.common.collect.Lists;
 import com.zuofw.index.UserIndex;
 import com.zuofw.model.vo.SearchUserReqVO;
@@ -17,6 +18,7 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.FieldSortBuilder;
 import org.elasticsearch.search.sort.SortBuilder;
 import org.elasticsearch.search.sort.SortOrder;
@@ -66,7 +68,12 @@ public class UserServiceImpl implements UserService {
 
         sourceBuilder.from(from);
         sourceBuilder.size(pageSize);
-
+        // 设置高亮字段
+        HighlightBuilder highlightBuilder = new HighlightBuilder();
+        highlightBuilder.field(UserIndex.FIELD_USER_NICKNAME)
+                .preTags("<strong>") // 设置包裹标签
+                .postTags("</strong>");
+        sourceBuilder.highlighter(highlightBuilder);
         // 将构建的查询条件设置到 SearchRequest 中
         searchRequest.source(sourceBuilder);
 
@@ -102,7 +109,11 @@ public class UserServiceImpl implements UserService {
                 String xiaohashuId = (String) sourceAsMap.get(UserIndex.FIELD_USER_XIAOHASHU_ID);
                 Integer noteTotal = (Integer) sourceAsMap.get(UserIndex.FIELD_USER_NOTE_TOTAL);
                 Integer fansTotal = (Integer) sourceAsMap.get(UserIndex.FIELD_USER_FANS_TOTAL);
-
+                String highlightedNickname = null;
+                if (CollUtil.isNotEmpty(hit.getHighlightFields())
+                        && hit.getHighlightFields().containsKey(UserIndex.FIELD_USER_NICKNAME)) {
+                    highlightedNickname = hit.getHighlightFields().get(UserIndex.FIELD_USER_NICKNAME).fragments()[0].string();
+                }
                 // 构建 VO 实体类
                 SearchUserRspVO searchUserRspVO = SearchUserRspVO.builder()
                         .userId(userId)
@@ -111,6 +122,7 @@ public class UserServiceImpl implements UserService {
                         .xiaohashuId(xiaohashuId)
                         .noteTotal(noteTotal)
                         .fansTotal(fansTotal)
+                        .highlightNickname(highlightedNickname)
                         .build();
                 searchUserRspVOS.add(searchUserRspVO);
             }
