@@ -5,30 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.zuofw</groupId>
-        <artifactId>zuofw-cloud</artifactId>
+        <artifactId>zuofw-im</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>zuofw-im</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>zuofw-im-common</module>
-        <module>zuofw-im-client</module>
-        <module>zuofw-im-server</module>
-        <module>zuofw-platform</module>
-    </modules>
+    <artifactId>zuofw-im-server</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <dependencies>
-        <dependency>
-            <groupId>com.zuofw</groupId>
-            <artifactId>zuofw-commons</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
 
 </project>
