@@ -1,4 +1,4 @@
-package com.zuofw.mq;
+package com.zuofw.mq.redis;
 
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.data.redis.connection.RedisConnection;

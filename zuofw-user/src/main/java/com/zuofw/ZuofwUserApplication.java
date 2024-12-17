@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 /**
  * 〈〉
  *
- * @author zuowei
+ * @author qingqiu
  * @create 2024/10/20
  * @since 1.0.0
  */

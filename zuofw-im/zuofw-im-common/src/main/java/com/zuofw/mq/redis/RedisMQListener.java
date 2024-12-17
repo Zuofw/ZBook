@@ -1,4 +1,4 @@
-package com.zuofw.mq;
+package com.zuofw.mq.redis;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

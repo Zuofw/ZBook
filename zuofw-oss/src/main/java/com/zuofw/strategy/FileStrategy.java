@@ -10,14 +10,14 @@ import java.security.NoSuchAlgorithmException;
 /**
  * 文件策略工厂
  *
- * @author zuowei
+ * @author qingqiu
  * @create 2024/10/9
  * @since 1.0.0
  */
 public interface FileStrategy{
     /*
      * @description:  上传文件
-     * @author zuofw
+     * @autho qingqiu
      * @date: 2024/10/9 10:03
      * @param file
      * @param bucketName

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 〈〉
  *
- * @author zuowei
+ * @author qingqiu
  * @create 2024/12/13
  * @since 1.0.0
  */
@@ -29,7 +29,7 @@ public class ZUserController {
 
     /*
      * @description:  更新用户信息 consumes是指定请求的Content-Type类型，如果不指定，那么默认是application/json
-     * @author zuofw
+     * @autho qingqiu
      * @date: 2024/12/13 14:43
      * @param id
      */

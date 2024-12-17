@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 /**
  * 〈〉
  *
- * @author zuowei
+ * @author qingqiu
  * @create 2024/10/19
  * @since 1.0.0
  */

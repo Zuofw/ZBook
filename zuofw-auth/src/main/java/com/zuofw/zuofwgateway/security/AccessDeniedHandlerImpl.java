@@ -19,7 +19,7 @@ import java.util.Map;
  * 〈一句话功能简述〉<br>
  * 〈权限不足handler〉
  *
- * @author zuowei
+ * @author qingqiu
  * @create 2024/4/9
  * @since 1.0.0
  */
@@ -28,7 +28,7 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
 
     /*
      * @description:  处理逻辑
-     * @author zuowei
+     * @author qingqiu
      * @date: 2024/4/9 14:54
      * @param request
      * @param response

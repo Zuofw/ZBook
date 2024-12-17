@@ -1,4 +1,4 @@
-package com.zuofw.mq;
+package com.zuofw.mq.redis;
 
 import java.util.List;
 

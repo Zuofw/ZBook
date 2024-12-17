@@ -7,7 +7,7 @@ import java.util.List;
 
 /*
  * @description: 审核状态枚举类
- * @author zuowei
+ * @author qingqiu
  * @date: 2024/7/20 20:42
  */
 @Getter

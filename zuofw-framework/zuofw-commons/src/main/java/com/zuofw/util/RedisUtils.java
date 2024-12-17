@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
  * 〈Redis缓存工具类〉<br>
  * 〈〉
  *
- * @author zuowei
+ * @author qingqiu
  * @create 2024/4/9
  * @since 1.0.0
  */

@@ -9,7 +9,7 @@ import lombok.Data;
  * 〈一句话功能简述〉<br>
  * 〈注册dto〉
  *
- * @author zuowei
+ * @author qingqiu
  * @create 2024/4/9
  * @since 1.0.0
  */

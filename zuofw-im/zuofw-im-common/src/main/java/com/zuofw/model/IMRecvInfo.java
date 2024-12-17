@@ -1,10 +1,19 @@
 package com.zuofw.model;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
 
+/*
+ * @description: IM消息接收信息
+ * @author bronya
+ * @date: 2024/12/17 14:59
+ * @param null
+ * @return null
+ */
 @Data
+@Builder
 public class IMRecvInfo {
 
     /**

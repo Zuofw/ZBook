@@ -3,7 +3,7 @@ package com.zuofw.feign;
 /**
  * 〈〉
  *
- * @author zuowei
+ * @author qingqiu
  * @create 2024/12/15
  * @since 1.0.0
  */

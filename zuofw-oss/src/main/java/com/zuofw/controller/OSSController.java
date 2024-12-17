@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 /**
  * 〈〉
  *
- * @author zuowei
+ * @author qingqiu
  * @create 2024/10/19
  * @since 1.0.0
  */

@@ -6,7 +6,7 @@ import com.zuofw.domain.entity.User;
 /**
  * 〈〉
  *
- * @author zuowei
+ * @author qingqiu
  * @create 2024/10/6
  * @since 1.0.0
  */

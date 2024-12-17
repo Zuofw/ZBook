@@ -1,7 +1,8 @@
-package com.zuofw.mq;
+package com.zuofw.mq.redis;
 
 import com.alibaba.fastjson.JSONObject;
-import com.bx.imcommon.util.ThreadPoolExecutorFactory;
+
+import com.zuofw.util.ThreadPoolExecutorFactory;
 import jakarta.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

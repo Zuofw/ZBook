@@ -2,6 +2,13 @@ package com.zuofw.enums;
 
 import lombok.AllArgsConstructor;
 
+/*
+ * @description: IM命令类型枚举
+ * @author bronya
+ * @date: 2024/12/17 15:00
+ * @param null
+ * @return null
+ */
 @AllArgsConstructor
 public enum IMCmdType {
 

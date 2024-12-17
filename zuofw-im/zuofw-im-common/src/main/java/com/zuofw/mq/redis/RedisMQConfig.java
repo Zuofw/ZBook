@@ -1,4 +1,4 @@
-package com.zuofw.mq;
+package com.zuofw.mq.redis;
 
 import com.alibaba.fastjson.support.spring.FastJsonRedisSerializer;
 import org.springframework.context.annotation.Bean;

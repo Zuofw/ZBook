@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 〈TokenService〉
  *
- * @author zuowei
+ * @author qingqiu
  * @create 2024/4/9
  * @since 1.0.0
  */
@@ -74,7 +74,7 @@ public class TokenServiceImpl implements TokenService {
 
     /*
      * @description:  获取登录用户的uuid
-     * @author zuowei
+     * @author qingqiu
      * @date: 2024/4/9 15:50
      * @param token
      * @return java.lang.String

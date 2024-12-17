@@ -14,7 +14,7 @@ import java.io.IOException;
  * 〈一句话功能简述〉<br>
  * 〈跨域过滤器〉
  *
- * @author zuowei
+ * @author qingqiu
  * @create 2024/4/9
  * @since 1.0.0
  */

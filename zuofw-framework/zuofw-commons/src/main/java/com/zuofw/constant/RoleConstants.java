@@ -6,7 +6,7 @@ import java.util.Map;
 
 /**
  * @description:  角色常量
- * @author zuowei
+ * @author qingqiu
  * @date 2024/4/9 18:05
  * @version 1.0
  */

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @description:  es客户端
- * @author zuofw
+ * @autho qingqiu
  * @date 2024/12/16 13:57
  * @version 1.0
  */

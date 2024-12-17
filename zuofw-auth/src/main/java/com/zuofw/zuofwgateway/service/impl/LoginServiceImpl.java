@@ -26,7 +26,7 @@ import org.springframework.transaction.support.TransactionTemplate;
  * 〈一句话功能简述〉<br>
  * 〈〉
  *
- * @author zuowei
+ * @author qingqiu
  * @create 2024/4/9
  * @since 1.0.0
  */
@@ -67,7 +67,7 @@ public class LoginServiceImpl implements LoginService {
 
     /*
      * @description: 管理员注册
-     * @author zuofw
+     * @autho qingqiu
      * @date: 2024/12/13 12:55
      * @param adminRegisterRequest
      */

@@ -24,7 +24,7 @@ import org.springframework.security.web.authentication.logout.LogoutFilter;
  * 〈SecuriyConfig〉<br>
  * 〈〉
  *
- * @author zuowei
+ * @author qingqiu
  * @create 2024/4/9
  * @since 1.0.0
  */

@@ -1,11 +1,18 @@
 package com.zuofw.model;
 
-import com.bx.imcommon.enums.IMTerminalType;
+
+import com.zuofw.enums.IMTerminalType;
 import lombok.Data;
 
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * @description:  IM系统消息
+ * @author bronya
+ * @date 2024/12/17 14:45
+ * @version 1.0
+ */
 @Data
 public class IMSystemMessage<T> {
 

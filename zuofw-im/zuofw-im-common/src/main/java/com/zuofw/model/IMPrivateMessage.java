@@ -1,6 +1,7 @@
 package com.zuofw.model;
 
-import com.bx.imcommon.enums.IMTerminalType;
+
+import com.zuofw.enums.IMTerminalType;
 import lombok.Data;
 
 import java.util.List;
