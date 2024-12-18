@@ -7,6 +7,7 @@ import com.zuofw.model.IMSendInfo;
 import com.zuofw.mq.redis.RedisMQTemplate;
 import com.zuofw.netty.processor.AbstractMessageProcessor;
 import com.zuofw.netty.processor.ProcessorFactory;
+import com.zuofw.util.SpringContextHolder;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.timeout.IdleState;
