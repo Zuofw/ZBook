@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: zuofw-im-server
+
+websocket:
+  enable: true
+  port: 8878
+
+tcpsocket:
+  enable: true
+  port: 8879
+

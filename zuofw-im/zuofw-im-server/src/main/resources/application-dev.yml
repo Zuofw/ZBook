@@ -1,0 +1,16 @@
+spring:
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      database: 1
+
+xxl:
+  job:
+    adminAddresses: http://127.0.0.1:7777/xxl-job-admin # xxl-job 调度中心部署根地址，如调度中心集群部署存在多个地址则用逗号分隔
+    accessToken: default_token # 需要和 xxl-job 上创建的 token 保持一致
+    appName: xxl-job-executor-zuofw # 需要和 xxl-job 上创建的执行器名称保持一致
+    ip: # 执行器 ip, 为空表示自动获取 ip
+    port: 10001 # 执行器端口号
+    logPath: /data/applogs/xxl-job/jobhandler # 执行器日志存放路径
+    logRetentionDays: 30 # 日志保留时间（单位：天）

@@ -7,6 +7,6 @@ package com.zuofw.handler;
  * @create 2024/12/16
  * @since 1.0.0
  */
-public class NoteHandler implements EntryHandler{
+public class NoteHandler {
 
 }
