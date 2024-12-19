@@ -26,9 +26,5 @@ public class FileServiceImpl implements FileService {
     private static final String BUSINESS_NAME = "zuofw";
     @Resource
     private FileStrategy fileStrategy;
-    @Override
-    public Result<?> uploadFile(MultipartFile file) {
-        String url = fileStrategy.uploadFile(file, BUSINESS_NAME);
-        return ResultUtils.success(url);
-    }
+
 }

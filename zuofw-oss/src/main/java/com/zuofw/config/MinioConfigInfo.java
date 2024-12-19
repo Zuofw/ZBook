@@ -4,20 +4,15 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-/**
- * 〈〉
- *
- * @author qingqiu
- * @create 2024/10/19
- * @since 1.0.0
- */
+@Data
 @Component
 @ConfigurationProperties(prefix = "minio")
-@Data
-public class MinioProperties {
+public class MinioConfigInfo {
+
     private String endpoint;
-
     private String accessKey;
-
     private String secretKey;
+    private String bucket;
+    private Integer expiry;
+    private Integer breakpointTime;
 }

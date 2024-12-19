@@ -17,11 +17,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public interface FileService {
 
-    /**
-     * 上传文件
-     * 
-     * @param file
-     * @return
-     */
-    Result<?> uploadFile(MultipartFile file);
+
+
+
 }
